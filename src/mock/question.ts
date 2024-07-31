@@ -1,5 +1,5 @@
 import { Random } from "mockjs";
-import { RouteType } from "../types";
+import { QuestionType, RouteType } from "../types";
 import getQuestionList from "../data/getQuestionList";
 
 const questionRoutes: RouteType[] = [
@@ -48,10 +48,18 @@ const questionRoutes: RouteType[] = [
     url: "/api/question",
     method: "get",
     response(ctx) {
+      /* 根据 ctx.url 的不同返回不同类型的数据 */
+      let list: QuestionType[];
+      if (ctx?.url.includes("isStar=true"))
+        list = getQuestionList({ isStar: true });
+      else if (ctx?.url.includes("isDeleted=true"))
+        list = getQuestionList({ isDeleted: true });
+      else list = getQuestionList();
+
       return {
         errno: 0,
         data: {
-          list: getQuestionList(), // 当前页
+          list, // 当前页
           total: 100, // 总数
         },
       };

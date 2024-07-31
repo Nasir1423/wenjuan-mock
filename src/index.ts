@@ -1,6 +1,7 @@
 import Koa, { Context } from "koa";
 import Router from "koa-router";
 import mockRoutes from "./mock";
+import { ResType } from "./types";
 
 const app = new Koa();
 const router = new Router();
@@ -11,7 +12,7 @@ const router = new Router();
  */
 mockRoutes.forEach((route) => {
   const { url, method, response } = route;
-  router[method](url, async (ctx: Context) => {
+  (router as any)[method](url, async (ctx: Context) => {
     const res = await getRes(response, ctx); // getRes 模拟网络请求，延迟 0.5s 后返回包含请求数据的 Promise；response 用于获取请求数据的函数
     ctx.body = res; // 设置响应体
   });
@@ -34,11 +35,11 @@ app.listen(3000, () => {
 /**
  *
  * @description 模拟异步获取响应的函数 * 使用 setTimeout 模拟异步操作，1 秒后返回 response 函数的结果
- * @param {Function} fn - 用于生成响应数据的函数
- * @param {object} ctx - 包含请求和响应信息的上下文对象
+ * @param {ResType} fn - 用于生成响应数据的函数
+ * @param {Context} ctx - 包含请求和响应信息的上下文对象
  * @returns {Promise<any>} - 包含响应数据的 Promise
  */
-async function getRes(fn, ctx) {
+async function getRes(fn: ResType, ctx: Context): Promise<any> {
   return new Promise((resolve) => {
     setTimeout(() => {
       const res = fn(ctx);

@@ -1,7 +1,7 @@
 "use strict";
-const Mock = require("mockjs");
-const Random = Mock.Random;
-module.exports = [
+Object.defineProperty(exports, "__esModule", { value: true });
+const mockjs_1 = require("mockjs");
+const testRoutes = [
     {
         url: "/api/test",
         method: "get",
@@ -9,9 +9,10 @@ module.exports = [
             return {
                 errno: 0,
                 data: {
-                    name: Random.cname(),
+                    name: mockjs_1.Random.cname(),
                 },
             };
         },
     },
 ];
+exports.default = testRoutes;

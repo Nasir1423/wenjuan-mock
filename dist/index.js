@@ -8,16 +8,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const Koa = require("koa");
-const Router = require("koa-router");
-const mockList = require("./mock/index");
-const app = new Koa();
-const router = new Router();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const koa_1 = __importDefault(require("koa"));
+const koa_router_1 = __importDefault(require("koa-router"));
+const mock_1 = __importDefault(require("./mock"));
+const app = new koa_1.default();
+const router = new koa_router_1.default();
 /*
  * 注册 mock 路由
  * 遍历 mockList 中的每个路由配置，依次为其注册路由处理程序
  */
-mockList.forEach((route) => {
+mock_1.default.forEach((route) => {
     const { url, method, response } = route;
     router[method](url, (ctx) => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield getRes(response, ctx); // getRes 模拟网络请求，延迟 0.5s 后返回包含请求数据的 Promise；response 用于获取请求数据的函数
@@ -39,8 +43,8 @@ app.listen(3000, () => {
 /**
  *
  * @description 模拟异步获取响应的函数 * 使用 setTimeout 模拟异步操作，1 秒后返回 response 函数的结果
- * @param {Function} fn - 用于生成响应数据的函数
- * @param {object} ctx - 包含请求和响应信息的上下文对象
+ * @param {ResType} fn - 用于生成响应数据的函数
+ * @param {Context} ctx - 包含请求和响应信息的上下文对象
  * @returns {Promise<any>} - 包含响应数据的 Promise
  */
 function getRes(fn, ctx) {

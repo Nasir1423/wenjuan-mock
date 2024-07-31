@@ -1,19 +1,20 @@
 import { Random } from "mockjs";
 import { QuestionType } from "../types";
 
+type PropsType = {
+  len?: number;
+  isDeleted?: boolean;
+  isStar?: boolean;
+};
+
 /**
  * @description 模拟满足一定规则的问卷列表
- * @param {number} len 列表长度
- * @param {boolean} isDeleted true 加载所有回收站问卷，false 加载所有不在回收站的问卷
- * @param {boolean} isStar true 加载所有星标问卷，false 都加载
+ * @param {PropsType} props.len len 列表长度; isDeleted true 加载所有回收站问卷，false 都加载; isStar true 加载所有星标问卷，false 都加载
  */
-function getQuestionList(
-  len: number = 10,
-  isDeleted: boolean = false,
-  isStar: boolean = false
-): QuestionType[] {
+function getQuestionList(props: PropsType = {}): QuestionType[] {
+  const { len = 10, isDeleted = false, isStar = false } = props;
   const questionList = [];
-  while (--len >= 0) {
+  for (let i = 0; i < len; i++) {
     const question = {
       id: Random.id(),
       title: Random.ctitle(),

@@ -1,8 +1,7 @@
-const Mock = require("mockjs");
+import { Random } from "mockjs";
+import { RouteType } from "../types";
 
-const Random = Mock.Random;
-
-module.exports = [
+const testRoutes: RouteType[] = [
   {
     url: "/api/test",
     method: "get",
@@ -16,3 +15,5 @@ module.exports = [
     },
   },
 ];
+
+export default testRoutes;

@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "tsc && nodemon dist/index.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +15,10 @@
     "mockjs": "^1.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
+    "@types/koa": "^2.15.0",
+    "@types/koa-router": "^7.4.8",
+    "@types/mockjs": "^1.0.10",
+    "nodemon": "^3.1.4",
+    "typescript": "^5.5.4"
   }
 }

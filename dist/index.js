@@ -14,9 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const koa_1 = __importDefault(require("koa"));
 const koa_router_1 = __importDefault(require("koa-router"));
+const koa_bodyparser_1 = __importDefault(require("koa-bodyparser"));
 const mock_1 = __importDefault(require("./mock"));
 const app = new koa_1.default();
 const router = new koa_router_1.default();
+app.use((0, koa_bodyparser_1.default)());
 /*
  * 注册 mock 路由
  * 遍历 mockList 中的每个路由配置，依次为其注册路由处理程序

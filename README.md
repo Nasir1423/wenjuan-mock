@@ -86,76 +86,88 @@ type QuestionType = {
 
 #### 获取单个问卷信息 `get: /api/question/:id`
 
-```json
-/* 获取单个问卷信息
-  method -> get
-  path -> /api/question/:id
-  response -> { errno: 0, data: { id, title, ... } }
-*/
-{
-    url: "/api/question/:id",
-    method: "get",
-    response() {
-      return {
-        errno: 0,
-        data: {
-          id: Random.id(),
-          title: Random.ctitle(),
-        },
-      };
-    },
-},
+```
+method -> get
+path -> /api/question/:id
+response -> { errno: 0, data: { id, title, ... } }
 ```
 
 #### 创建问卷 `post: /api/question`
 
-```json
-/* 创建问卷
-  method -> post
-  path -> /api/question
-  request body -> 无
-  response -> { errno: 0, data: { id } }
-*/
-{
-url: "/api/question",
-method: "post",
-response() {
-  return {
-    errno: 0,
-    data: {
-      id: Random.id(),
-    },
-  };
-},
-},
+```
+method -> post
+path -> /api/question
+request body -> 无
+response -> { errno: 0, data: { id } }
 ```
 
 #### 查询问卷列表 `get: /api/question`
 
-```json
-/* 查询问卷列表
-  method -> get
-  path -> /api/question
-  response -> { errno: 0, data: { list: [...] }, total }
-*/
-{
-url: "/api/question",
-method: "get",
-response(ctx) {
-  return {
-    errno: 0,
-    data: {
-      list: getQuestionList(), // 当前页
-      total: 100, // 总数
-    },
-  };
-},
-},
+```
+method -> get
+path -> /api/question
+response -> { errno: 0, data: { list: [...] }, total }
+```
+#### 更新问卷 `patch: /api/question/:id`
+
+```
+method -> patch
+path -> /api/question/:id
+request body -> { title, isStar, ... }
+response -> { errno: 0 }
 ```
 
+#### 复制问卷 `post: /api/question/:id`
 
+```
+method -> post
+path -> /api/question/:id
+response -> { errno: 0, data: { id } }
+```
+
+#### 删除问卷 `delete: /api/question`
+
+```
+method -> delete
+path -> /api/question
+request body -> { ids: [ ... ] }
+response -> { errno: 0 }
+```
+
+### 用户 API
+
+#### 获取用户信息 `get: /api/user/info`
+
+``` 
+method -> get
+path -> /api/user/info
+response -> { errno: 0, data: { ... } } 
+```
+
+#### 注册 `post: /api/user/register`
+
+```
+method -> post
+path -> /api/user/register
+request body -> { username, password, nickname }
+response -> { errno: 0 } 
+```
+
+#### 登录 `post: /api/user/login`
+
+```
+method -> post
+path -> /api/user/login
+request body -> { username, password }
+response -> { errno: 0, data: { token } } (JWT token)
+```
 
 ### 测试 API
 
+#### 测试数据 `get: /api/test`
 
-
+```
+method -> get
+path: /api/test
+reponse -> { errno: 0, data: { name } }
+```

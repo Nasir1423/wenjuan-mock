@@ -1,10 +1,13 @@
 import Koa, { Context } from "koa";
 import Router from "koa-router";
+import bodyParser from "koa-bodyparser";
 import mockRoutes from "./mock";
 import { ResType } from "./types";
 
 const app = new Koa();
 const router = new Router();
+
+app.use(bodyParser());
 
 /*
  * 注册 mock 路由

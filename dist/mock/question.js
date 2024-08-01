@@ -52,16 +52,39 @@ const questionRoutes = [
         method: "get",
         response(ctx) {
             /* 根据 ctx.url 的不同返回不同类型的数据 */
-            let pageType;
-            console.log("------------------");
-            console.log(ctx === null || ctx === void 0 ? void 0 : ctx.url);
-            console.log(ctx === null || ctx === void 0 ? void 0 : ctx.URL);
+            const query = (ctx === null || ctx === void 0 ? void 0 : ctx.query) || {};
+            const searchOption = {
+                keywords: query.keywords,
+                isDeleted: Boolean(query.isDeleted),
+                isStar: Boolean(query.isStar),
+                page: parseInt(query.page),
+                pageSize: parseInt(query.pageSize),
+            };
+            const list = (0, getQuestionList_1.default)(searchOption);
             return {
                 errno: 0,
                 data: {
-                    list: (0, getQuestionList_1.default)(), // 当前页
+                    list, // 当前页
                     total: 100, // 总数
                 },
+            };
+        },
+    },
+    /* 更新问卷
+        method -> patch
+        path -> /api/question/:id
+        request body -> { title, isStar, ... }
+        response -> { errno: 0 }
+    */
+    {
+        url: "/api/question/:id",
+        method: "patch",
+        response(ctx) {
+            console.log(`问卷 ${ctx === null || ctx === void 0 ? void 0 : ctx.url.split("/").at(-1)} 正在更新中 ...`);
+            console.log(ctx === null || ctx === void 0 ? void 0 : ctx.request);
+            return {
+                isStar: 0,
+                errno: 0,
             };
         },
     },

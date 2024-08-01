@@ -4,21 +4,24 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsc && nodemon dist/index.js"
+    "start": "nodemon --exec ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
     "koa": "^2.15.3",
+    "koa-bodyparser": "^4.4.1",
     "koa-router": "^12.0.1",
     "mockjs": "^1.1.0"
   },
   "devDependencies": {
     "@types/koa": "^2.15.0",
+    "@types/koa-bodyparser": "^4.3.12",
     "@types/koa-router": "^7.4.8",
     "@types/mockjs": "^1.0.10",
     "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.5.4"
   }
 }

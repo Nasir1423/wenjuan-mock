@@ -11,11 +11,11 @@ const questionRoutes: RouteType[] = [
   {
     url: "/api/question/:id",
     method: "get",
-    response() {
+    response(ctx) {
       return {
         errno: 0,
         data: {
-          id: Random.id(),
+          id: ctx?.url.split("/").at(-1) || "000000",
           title: Random.ctitle(),
         },
       };
@@ -49,12 +49,15 @@ const questionRoutes: RouteType[] = [
     method: "get",
     response(ctx) {
       /* 根据 ctx.url 的不同返回不同类型的数据 */
-      let list: QuestionType[];
-      if (ctx?.url.includes("isStar=true"))
-        list = getQuestionList({ isStar: true });
-      else if (ctx?.url.includes("isDeleted=true"))
-        list = getQuestionList({ isDeleted: true });
-      else list = getQuestionList();
+      const query = ctx?.query || {};
+      const searchOption = {
+        keywords: query.keywords as string,
+        isDeleted: Boolean(query.isDeleted),
+        isStar: Boolean(query.isStar),
+        page: parseInt(query.page as string),
+        pageSize: parseInt(query.pageSize as string),
+      };
+      const list: QuestionType[] = getQuestionList(searchOption);
 
       return {
         errno: 0,
@@ -62,6 +65,60 @@ const questionRoutes: RouteType[] = [
           list, // 当前页
           total: 100, // 总数
         },
+      };
+    },
+  },
+  /* 更新问卷
+      method -> patch
+      path -> /api/question/:id
+      request body -> { title, isStar, ... }
+      response -> { errno: 0 }
+  */
+  {
+    url: "/api/question/:id",
+    method: "patch",
+    response(ctx) {
+      console.log(
+        `问卷 ${ctx?.url
+          .split("/")
+          .at(-1)} 正在更新中 ...；修改的字段为 ${Object.keys(
+          ctx?.request.body || ""
+        )}`
+      );
+      return {
+        errno: 0,
+      };
+    },
+  },
+  /* 复制问卷
+      method -> post
+      path -> /api/question/:id
+      response -> { errno: 0, data: { id } }
+  */
+  {
+    url: "/api/question/duplicate/:id",
+    method: "post",
+    response() {
+      return {
+        errno: 0,
+        data: {
+          id: Random.id(),
+        },
+      };
+    },
+  },
+  /* 删除问卷（彻底删除）
+      method -> delete
+      path -> /api/question
+      request body -> { ids: [ ... ] }
+      response -> { errno: 0 }
+  */
+  {
+    url: "/api/question",
+    method: "delete",
+    response() {
+      return {
+        errno: 0,
       };
     },
   },

@@ -11,6 +11,7 @@ const userRoutes: RouteType[] = [
     url: "/api/user/info",
     method: "get",
     response() {
+      console.log("用户：请求信息");
       return {
         errno: 0,
         data: {
@@ -30,6 +31,7 @@ const userRoutes: RouteType[] = [
     url: "/api/user/register",
     method: "post",
     response() {
+      console.log("用户：请求注册");
       return { errno: 0 };
     },
   },
@@ -40,9 +42,10 @@ const userRoutes: RouteType[] = [
       response -> { errno: 0, data: { token } } (JWT token)
   */
   {
-    url: "/api/user/info",
-    method: "get",
+    url: "/api/user/login",
+    method: "post",
     response() {
+      console.log("用户：请求登录");
       return {
         errno: 0,
         data: {

@@ -1,5 +1,6 @@
 import { Random } from "mockjs";
 import { RouteType } from "../types";
+import { logSuccessRequest } from "../message";
 
 const userRoutes: RouteType[] = [
   /* 获取用户信息
@@ -11,13 +12,14 @@ const userRoutes: RouteType[] = [
     url: "/api/user/info",
     method: "get",
     response() {
-      console.log("用户：请求信息");
+      const data = {
+        username: Random.title(),
+        nickname: Random.cname(),
+      };
+      logSuccessRequest("user", `请求用户信息 ${JSON.stringify(data)}`);
       return {
         errno: 0,
-        data: {
-          username: Random.title(),
-          nickname: Random.cname(),
-        },
+        data,
       };
     },
   },
@@ -31,7 +33,7 @@ const userRoutes: RouteType[] = [
     url: "/api/user/register",
     method: "post",
     response() {
-      console.log("用户：请求注册");
+      logSuccessRequest("user", "用户注册");
       return { errno: 0 };
     },
   },
@@ -45,12 +47,13 @@ const userRoutes: RouteType[] = [
     url: "/api/user/login",
     method: "post",
     response() {
-      console.log("用户：请求登录");
+      const data = {
+        token: Random.word(20),
+      };
+      logSuccessRequest("user", `用户登录 ${JSON.stringify(data)}`);
       return {
         errno: 0,
-        data: {
-          token: Random.word(20),
-        },
+        data,
       };
     },
   },

@@ -16,6 +16,27 @@ const questionRoutes: RouteType[] = [
       const data = {
         id: ctx?.url.split("/").at(-1) || "000000",
         title: Random.ctitle(),
+        // 组件列表
+        componentList: [
+          {
+            id: Random.id(),
+            type: "questionTitle",
+            title: "标题",
+            props: { text: "一行标题-mock", level: 1, alignCenter: false },
+          },
+          {
+            id: Random.id(),
+            type: "questionInput",
+            title: "输入框",
+            props: { text: "输入框标题-mock", placeholder: "请输入...-mock" },
+          },
+          {
+            id: Random.id(),
+            type: "questionInput",
+            title: "输入框",
+            props: { text: "输入框标题-mock2", placeholder: "请输入...-mock2" },
+          },
+        ],
       };
       logSuccessRequest(
         "question",

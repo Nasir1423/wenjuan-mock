@@ -19,19 +19,19 @@ const questionRoutes: RouteType[] = [
         // 组件列表
         componentList: [
           {
-            id: Random.id(),
+            fe_id: Random.id(),
             type: "questionTitle",
             title: "标题",
             props: { text: "一行标题-mock", level: 1, alignCenter: false },
           },
           {
-            id: Random.id(),
+            fe_id: Random.id(),
             type: "questionInput",
             title: "输入框",
             props: { text: "输入框标题-mock", placeholder: "请输入...-mock" },
           },
           {
-            id: Random.id(),
+            fe_id: Random.id(),
             type: "questionInput",
             title: "输入框",
             props: { text: "输入框标题-mock2", placeholder: "请输入...-mock2" },

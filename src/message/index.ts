@@ -12,7 +12,7 @@ export function logSuccessRequest(field: string, message: string): void {
     timeZoneName: "short",
   });
 
-  // 将 field 字段设置为加粗和绿色
+  // 将 field 字段设置为加粗和绿色 
   const styledField = `${colors.bright}${colors.fgGreen}${field}${colors.reset}`;
 
   const log =

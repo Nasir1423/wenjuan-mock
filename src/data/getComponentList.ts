@@ -84,6 +84,14 @@ const getComponentList = (): ComponentType[] => {
       props: { text: "请输入你的自我评价", isCenter: false },
     },
     {
+      fe_id: "componentId-z",
+      type: "questionTextArea",
+      title: "多行输入",
+      isHidden: false,
+      isLocked: false,
+      props: { title: "请在下边输入你的自我评价", text: "请输入你的自我评价" },
+    },
+    {
       fe_id: "componentId-h",
       type: "questionCheckbox",
       title: "问卷多选框",

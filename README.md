@@ -2,37 +2,14 @@
 
 ${\bf{\Large{@Description}}}$ 该项目基于 `koa` 搭建一个**后端服务**，用于处理前端请求，并响应基于 `mockjs` 生成的模拟数据。
 
+> 该项目已经部署在 vercel 上，可以通过 https://wenjuan-mock.vercel.app/ 访问 mock 接口
+
 ## 技术栈
 
 ```
 koa  + mockjs + nodejs + typescript
 ```
 > `koa` 用于开启 http 服务；`mockjs` 使用 Random 模块模拟数据；`typescript` 进行类型控制
-
-### 依赖
-
-```json
-"dependencies": {
-    "koa": "^2.15.3",
-    "koa-router": "^12.0.1",
-    "mockjs": "^1.1.0"
-},
-"devDependencies": {
-    "@types/koa": "^2.15.0",
-    "@types/koa-router": "^7.4.8",
-    "@types/mockjs": "^1.0.10",
-    "nodemon": "^3.1.4",
-    "typescript": "^5.5.4"
-}
-```
-
-### 脚本
-
-```json
-"scripts": {
-    "dev": "tsc && nodemon dist/index.js"
-},
-```
 
 ## 项目结构
 

@@ -1,11 +1,21 @@
 import Koa, { Context } from "koa";
 import Router from "koa-router";
 import bodyParser from "koa-bodyparser";
+import cors from "koa-cors"; // 引入 koa-cors
 import mockRoutes from "./mock";
 import { ResType } from "./types";
 
 const app = new Koa();
 const router = new Router();
+
+// 使用 koa-cors 中间件配置 CORS
+app.use(
+  cors({
+    origin: "*", // 允许所有源进行访问
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // 允许的请求方法
+    headers: ["Content-Type", "Authorization", "Accept"],
+  })
+);
 
 app.use(bodyParser());
 

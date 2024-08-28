@@ -8,7 +8,7 @@
 
 ```bash
 npm install
-npm serve
+npm run serve
 ```
 
 ## 2. 技术栈

@@ -1,10 +1,10 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
+  "compilerOptions": { // 指定编译选项
+    "target": "es6", // 目标 JavaScript 版本
+    "module": "commonjs", // 模块系统
     "outDir": "./dist",
-    "strict": true,
-    "esModuleInterop": true
+    "strict": true, // 启用所有严格类型检查选项
+    "esModuleInterop": true // // 允许与 CommonJS 模块进行互操作
   },
-  "include": ["./src/**/*"]
+  "include": ["./src/**/*"] // 包含所有 src 目录下的 TypeScript 文件
 }

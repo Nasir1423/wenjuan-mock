@@ -1,10 +1,16 @@
 {
-  "version": 2,
+  "version": 2, // 指定 Vercel 配置文件的版本
+  /* 指定构建步骤，定义了 Vercel 如何将源代码编译或打包成可以在服务器上运行的形式。 */
   "builds": [
     {
+      /* 定义了构建的入口文件。 */
       "src": "src/index.ts",
+      /* 指定了要使用的构建器。
+      @vercel/node 是 Vercel 提供的一个 Node.js 构建器，它可以将 Node.js 项目打包为 Serverless 函数。 */
       "use": "@vercel/node",
       "config": {
+        /* 指定了在构建过程中需要包含的文件或文件夹。
+          这确保了 Vercel 在部署时会把 src 目录下的所有文件以及 node_modules 下的所有依赖都包含进去。 */
         "includeFiles": [
           "src/**/*",
           "node_modules/**/*"
@@ -12,7 +18,9 @@
       }
     }
   ],
+  /* 配置路由规则，定义了用户访问某个 URL 时应该如何处理请求。 */
   "routes": [
+    /* 所有匹配的请求都会被重定向到 src/index.ts */
     {
       "src": "/(.*)",
       "dest": "src/index.ts"

@@ -242,7 +242,7 @@ test API 用于测试 Koa 服务是否重新启动
 
 > 以下为 tsconfig.json 中的配置。tsconfig.json 是 TypeScript 项目的配置文件，用于指定编译器选项、项目的根目录、包含或排除的文件等。它控制着 TypeScript 编译器 (tsc) 如何处理代码，并决定项目中 TypeScript 的行为。
 
-```json
+```jsonc
 {
   "compilerOptions": { // 指定编译选项
     "target": "es6", // 目标 JavaScript 版本
@@ -259,7 +259,7 @@ test API 用于测试 Koa 服务是否重新启动
 
 > 以下为 vercel.json 中的配置。vercel.json 是 Vercel 平台上用于配置项目部署的文件。通过这个文件，你可以控制项目的部署行为、路由规则、环境变量、构建设置等。
 
-```json
+```jsonc
 {
   "version": 2, // 指定 Vercel 配置文件的版本
   /* 指定构建步骤，定义了 Vercel 如何将源代码编译或打包成可以在服务器上运行的形式。 */
